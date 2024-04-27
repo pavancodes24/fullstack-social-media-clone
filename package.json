@@ -9,7 +9,7 @@
     "lint:fix": "eslint 'src/**/*.ts' --fix",
     "prettier:check": "prettier --check 'src/**/*.{ts,json}'",
     "prettier:fix": "prettier --write 'src/**/*.{ts,json}'",
-    "build":"tsc -p ."
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json"
   },
   "keywords": [],
   "author": "",
@@ -30,7 +30,6 @@
     "mongoose": "^8.3.2",
     "redis": "^4.6.13",
     "socket.io": "^4.7.5",
-    "ttypescript": "^1.5.15",
     "typescript": "^5.4.5",
     "typescript-transform-paths": "^3.4.7"
   },
@@ -46,6 +45,7 @@
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0"
   }
 }
