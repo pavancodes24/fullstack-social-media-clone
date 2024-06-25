@@ -38,7 +38,8 @@ export class ChattyServer {
       cookieSession({
         name: 'session', //this name is req in aws load balancer
         keys: [config.SECRET_KEY_ONE!, config.SECRET_KEY_TWO!],
-        maxAge: 24 * 7 * 3600000,
+        // maxAge: 24 * 7 * 3600000,
+        maxAge: 5000,
         secure: config.NODE_ENV !== 'development' // once we https we have to set to true
       })
     );
@@ -110,7 +111,8 @@ export class ChattyServer {
     });
   }
 
-  private socketIOConnections(io: Server): void {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  private socketIOConnections(_io: Server): void {
     log.info('socketIOConnections');
   }
 }
