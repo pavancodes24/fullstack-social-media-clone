@@ -38,8 +38,8 @@ export class ChattyServer {
       cookieSession({
         name: 'session', //this name is req in aws load balancer
         keys: [config.SECRET_KEY_ONE!, config.SECRET_KEY_TWO!],
-        // maxAge: 24 * 7 * 3600000,
-        maxAge: 5000,
+        maxAge: 24 * 7 * 3600000,
+        // maxAge: 5000,
         secure: config.NODE_ENV !== 'development' // once we https we have to set to true
       })
     );
