@@ -7,6 +7,8 @@ import JWT from 'jsonwebtoken';
 import { Request, Response } from 'express';
 import { config } from '@root/config';
 import HTTP_STATUS from 'http-status-codes';
+import { IUserDocument } from '@user/interfaces/user.interface';
+import { userService } from '@service/db/user.service';
 
 export class SignIn {
   @joiValidation(loginSchema)
@@ -24,9 +26,11 @@ export class SignIn {
       throw new BadRequestError('Invalid credentials');
     }
 
+    const user: IUserDocument = await userService.getUserByAuthId(`${existingUser._id}`);
+
     const userJwt: string = JWT.sign(
       {
-        userId: existingUser._id, // this should not be from exisiting user -> this should be actual user we have created
+        userId: user._id, // this should not be from exisiting user -> this should be actual user we have created
         uId: existingUser.uId,
         email: existingUser.email,
         username: existingUser.username,
@@ -35,6 +39,16 @@ export class SignIn {
       config.JWT_TOKEN!
     );
     req.session = { jwt: userJwt };
-    res.status(HTTP_STATUS.OK).json({ message: 'user login successfully', user: existingUser, token: userJwt });
+
+    const userDocument: IUserDocument = {
+      ...user,
+      authId: existingUser!._id,
+      username: existingUser!.username,
+      email: existingUser!.email,
+      avatarColor: existingUser!.avatarColor,
+      uId: existingUser!.uId,
+      createdAt: existingUser!.createdAt
+    } as IUserDocument;
+    res.status(HTTP_STATUS.OK).json({ message: 'User login successfully', user: userDocument, token: userJwt });
   }
 }
