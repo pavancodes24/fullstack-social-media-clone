@@ -30,7 +30,7 @@ export class SignIn {
 
     const userJwt: string = JWT.sign(
       {
-        userId: user._id, // this should not be from exisiting user -> this should be actual user we have created
+        userId: existingUser._id, // this should not be from exisiting user -> this should be actual user we have created
         uId: existingUser.uId,
         email: existingUser.email,
         username: existingUser.username,
