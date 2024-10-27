@@ -7,7 +7,7 @@ import { Query, UpdateQuery } from 'mongoose';
 class PostService {
   public async addPostToDB(userId: string, createdPost: IPostDocument): Promise<void> {
     const post: Promise<IPostDocument> = PostModel.create(createdPost); // not using await here to use promise.all
-    const user: UpdateQuery<IUserDocument> = UserModel.updateOne({ _id: userId }, { $inc: { postsCounts: 1 } });
+    const user: UpdateQuery<IUserDocument> = UserModel.updateOne({ _id: userId }, { $inc: { postsCount: 1 } });
     await Promise.all([post, user]); // this is for updating posts only once the user is created
   } //not connected (method and name of job have nothing to do with each  other they are just idenifiers)
 
