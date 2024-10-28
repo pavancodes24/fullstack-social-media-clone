@@ -27,7 +27,7 @@ export class Get {
       cachedReaction.length > 0 ? cachedReaction : await reactionService.getSinglePostReactionByUsername(postId, username);
 
     res.status(HTTP_STATUS.OK).json({
-      message: 'Single Post reaction by username',
+      message: 'Single post reaction by username',
       reactions: reactions.length ? reactions[0] : {},
       count: reactions.length ? reactions[1] : 0
     });
@@ -37,6 +37,6 @@ export class Get {
     const { username } = req.params;
     const reactions: IReactionDocument[] = await reactionService.getReactionsByUsername(username);
 
-    res.status(HTTP_STATUS.OK).json({ message: 'All reaction by username', reactions });
+    res.status(HTTP_STATUS.OK).json({ message: 'All user reactions by username', reactions });
   }
 }

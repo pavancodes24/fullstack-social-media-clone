@@ -20,6 +20,6 @@ export class Remove {
     };
 
     reactionQueue.addReactionJob('removeReactionFromDB', databaseReactionData);
-    res.status(HTTP_STATUS.OK).json({ message: 'Reaction removed from Post' });
+    res.status(HTTP_STATUS.OK).json({ message: 'Reaction removed from post' });
   }
 }
