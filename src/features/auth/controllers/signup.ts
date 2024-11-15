@@ -11,7 +11,7 @@ import { uploads } from '@global/helpers/cloudinary-upload';
 import HTTP_STATUS from 'http-status-codes';
 import { IUserDocument } from '@user/interfaces/user.interface';
 import { UserCache } from '@service/redis/user.cache';
-import { omit } from 'lodash';
+// import { omit } from 'lodash';
 import Jwt from 'jsonwebtoken';
 import { authQueue } from '@service/queues/auth.queue';
 import { userQueue } from '@service/queues/user.queue';
@@ -52,9 +52,9 @@ export class SignUp {
     await userCache.saveUserToCache(`${userObjectId}`, uId, userDataForCache);
 
     //Add to database
-    omit(userDataForCache, ['uId', 'username', 'email', 'avatarColor', 'password']);
-    authQueue.addAuthUserJob('addAuthUserToDB', { value: userDataForCache }); // create jobs to add it to mongodb database
-    userQueue.addUserJob('addUserToDB', { value: userDataForCache });
+    // omit(userDataForCache, ['uId', 'username', 'email', 'avatarColor', 'password']); -> omit is not required as we are not using the return value
+    authQueue.addAuthUserJob('addAuthUserToDB', { value: authData }); // create jobs to add it to mongodb database
+    userQueue.addUserJob('addUserToDB', { value: userDataForCache }); // this works perfectly bacause mongoose schema doesnot have uid ,username,avatarcolor,password. ->auth fix bug 154
 
     const userJwt: string = SignUp.prototype.signupToken(authData, userObjectId);
     req.session = { jwt: userJwt }; // -> save token in session
