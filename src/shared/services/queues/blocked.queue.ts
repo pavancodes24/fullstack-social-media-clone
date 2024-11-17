@@ -6,7 +6,7 @@ class BlockedUserQueue extends BaseQueue {
   constructor() {
     super('blockedUsers');
     this.processJob('addBlockedUserToDB', 5, blockedUserWorker.addBlockedUserToDB);
-    this.processJob('removedBlockedUserFromDB', 5, blockedUserWorker.addBlockedUserToDB);
+    this.processJob('removeBlockedUserFromDB', 5, blockedUserWorker.addBlockedUserToDB);
   }
 
   public addBlockedUserJob(name: string, data: IBlockedUserJobData): void {

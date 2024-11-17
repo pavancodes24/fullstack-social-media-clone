@@ -14,18 +14,18 @@ export class AddUser {
       keyTwo: `${followerId}`,
       type: 'block'
     });
-    res.status(HTTP_STATUS.OK).send({ message: 'User blocked' });
+    res.status(HTTP_STATUS.OK).json({ message: 'User blocked' });
   }
 
   public async unblock(req: Request, res: Response): Promise<void> {
     const { followerId } = req.params;
     AddUser.prototype.updateBlockedUser(followerId, req.currentUser!.userId, 'unblock');
-    blockedUserQueue.addBlockedUserJob('removedBlockedUserFromDB', {
+    blockedUserQueue.addBlockedUserJob('removeBlockedUserFromDB', {
       keyOne: `${req.currentUser!.userId}`,
       keyTwo: `${followerId}`,
       type: 'unblock'
     });
-    res.status(HTTP_STATUS.OK).send({ message: 'User unblocked' });
+    res.status(HTTP_STATUS.OK).json({ message: 'User unblocked' });
   }
 
   private async updateBlockedUser(followerId: string, userId: string, type: 'block' | 'unblock'): Promise<void> {

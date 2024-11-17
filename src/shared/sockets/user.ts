@@ -16,10 +16,9 @@ export class SocketIOUserHandler {
         this.io.emit('blocked user id  ', data);
       });
 
-
-       socket.on('unblock user', (data: ISocketData) => {
-         this.io.emit('unblocked user id  ', data);
-       });
+      socket.on('unblock user', (data: ISocketData) => {
+        this.io.emit('unblocked user id  ', data);
+      });
     });
   }
 }
