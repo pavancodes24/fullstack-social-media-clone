@@ -9,9 +9,9 @@ Accept: application/json
 withCredentials:true
 
 {
-  "userTo":"67147641752649f86b3c67a8",
-  "postId":"67147658752649f86b3c67af",
-  "comment": "This is my second comment",
+  "userTo":"6737b089d16c37ad9ff9df0a",
+  "postId":"6739000c165b7b605d530b26",
+  "comment": "Hope you are good",
   "profilePicture":"https://res.cloudinary.com/dogpykohr/image/upload/v1726904784/66ee79ce63095810f63337e9"
 }
 

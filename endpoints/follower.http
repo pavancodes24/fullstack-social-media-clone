@@ -5,7 +5,7 @@
 
 
 ###
-PUT {{baseUrl}}/{{urlPath}}/user/follow/6737aa4887fe4f8d50e7a540
+PUT {{baseUrl}}/{{urlPath}}/user/follow/6737b089d16c37ad9ff9df0a
 Content-Type: application/json
 Accept: application/json
 withCredentials:true
@@ -14,7 +14,7 @@ withCredentials:true
 
 
 ###
-PUT {{baseUrl}}/{{urlPath}}/user/unfollow/6737aa4887fe4f8d50e7a540/6737aa3887fe4f8d50e7a539
+PUT {{baseUrl}}/{{urlPath}}/user/unfollow/6737b089d16c37ad9ff9df0a/6737b091d16c37ad9ff9df11
 Content-Type: application/json
 Accept: application/json
 withCredentials:true
@@ -47,7 +47,7 @@ withCredentials:true
 
 
 ###
-PUT {{baseUrl}}/{{urlPath}}/user/block/6737b09dd16c37ad9ff9df18
+PUT {{baseUrl}}/{{urlPath}}/user/block/6737b091d16c37ad9ff9df11
 Content-Type: application/json
 Accept: application/json
 withCredentials:true
@@ -56,7 +56,7 @@ withCredentials:true
 
 
 ###
-PUT {{baseUrl}}/{{urlPath}}/user/unblock/6737b09dd16c37ad9ff9df18
+PUT {{baseUrl}}/{{urlPath}}/user/unblock/6737b091d16c37ad9ff9df11
 Content-Type: application/json
 Accept: application/json
 withCredentials:true
