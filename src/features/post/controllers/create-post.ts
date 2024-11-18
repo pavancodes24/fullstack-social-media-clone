@@ -3,6 +3,7 @@ import { uploads } from '@global/helpers/cloudinary-upload';
 import { BadRequestError } from '@global/helpers/error-handler';
 import { IPostDocument } from '@post/interfaces/post.interface';
 import { postSchema, postWithImageSchema } from '@post/schemes/post.schemes';
+import { imageQueue } from '@service/queues/image.queue';
 import { postQueue } from '@service/queues/post.queue';
 import { PostCache } from '@service/redis/post.cache';
 import { socketIOPostObject } from '@socket/post';
@@ -92,6 +93,11 @@ export class Create {
 
     postQueue.addPostJob('addPostToDB', { key: req.currentUser!.userId, value: createdPost });
     // call image queue to add image to mongodb database
+    imageQueue.addImageJob('addImageToDB', {
+      key: `${req.currentUser!.userId}`,
+      imgId: result.public_id,
+      imgVersion: result.version.toString() // usually the property coming from cloudinary will be an integer so converting it to string;
+    });
 
     res.status(HTTP_STATUS.CREATED).json({ message: 'Post created with image successfully' });
   }
