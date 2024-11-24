@@ -1,0 +1,113 @@
+@baseUrl = http://localhost:5001
+
+@urlPath = api/v1
+
+###
+POST {{baseUrl}}/{{urlPath}}/chat/message
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{
+  "conversationId": "",
+  "receiverId": "674286d7b6f4d0f9f75a1c46",
+  "receiverUsername": "Rach",
+  "receiverAvatarColor": "blue",
+  "receiverProfilePicture": "https://res.cloudinary.com/dogpykohr/image/upload/v1732413146/674286d7b6f4d0f9f75a1c46",
+  "body": "Hello Rach!",
+  "gifUrl": "",
+  "isRead": false,
+  "selectedImage": ""
+}
+
+
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/chat/message/add-chat-users
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{
+  "userOne":"6737b089d16c37ad9ff9df0a",
+  "userTwo":"6737b09dd16c37ad9ff9df18"
+}
+
+
+
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/chat/message/remove-chat-users
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{
+  "userOne":"6737b089d16c37ad9ff9df0a",
+  "userTwo":"6737b09dd16c37ad9ff9df18"
+}
+
+
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/chat/message/conversation-list
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{}
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/chat/message/user/6737b09dd16c37ad9ff9df18
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{}
+
+
+###
+DELETE {{baseUrl}}/{{urlPath}}/chat/message/mark-as-deleted/6741a3db4bff4c26685b7118/6737b089d16c37ad9ff9df0a/6737b09dd16c37ad9ff9df18/deleteForEveryone
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{}
+
+
+
+###
+PUT {{baseUrl}}/{{urlPath}}/chat/message/mark-as-read
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{
+  "senderId": "67426f7ef88724a7058a0947",
+  "receiverId":"674270fcf88724a7058a0955"
+}
+
+
+
+
+
+
+###
+PUT {{baseUrl}}/{{urlPath}}/chat/message/reaction
+Content-Type: application/json
+Accept: application/json
+withCredentials:true
+
+{
+  "conversationId": "67428796b6f4d0f9f75a1c55",
+  "messageId":"67428796b6f4d0f9f75a1c54",
+  "reaction":"wow",
+  "type":"add"
+}
+
+
+
