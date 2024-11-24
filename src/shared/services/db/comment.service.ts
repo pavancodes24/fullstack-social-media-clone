@@ -9,7 +9,7 @@ import { IUserDocument } from '@user/interfaces/user.interface';
 import { NotificationModel } from '@notification/models/notification.schema';
 import { INotificationDocument, INotificationTemplate } from '@notification/interfaces/notification.interface';
 import { socketIONotificationObject } from '@socket/notification';
-import { notificationTemplate } from '@service/emails/templates/notifications/notification';
+import { notificationTemplate } from '@service/emails/templates/notifications/notification-template';
 import { emailQueue } from '@service/queues/email.queue';
 
 const userCache: UserCache = new UserCache();

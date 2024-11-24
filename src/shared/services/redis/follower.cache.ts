@@ -34,7 +34,6 @@ export class FollowerCache extends BaseCache {
       if (!this.client.isOpen) {
         await this.client.connect();
       }
-      console.log(key, value, 'pleasecheck');
       await this.client.LREM(key, 1, value);
     } catch (error) {
       log.error(error);

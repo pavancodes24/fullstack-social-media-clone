@@ -8,7 +8,7 @@ import { IUserDocument } from '@user/interfaces/user.interface';
 import { INotificationDocument, INotificationTemplate } from '@notification/interfaces/notification.interface';
 import { NotificationModel } from '@notification/models/notification.schema';
 import { socketIONotificationObject } from '@socket/notification';
-import { notificationTemplate } from '@service/emails/templates/notifications/notification';
+import { notificationTemplate } from '@service/emails/templates/notifications/notification-template';
 import { emailQueue } from '@service/queues/email.queue';
 import { UserCache } from '@service/redis/user.cache';
 
