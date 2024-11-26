@@ -1,0 +1,109 @@
+@baseUrl = http://localhost:5001
+
+@urlPath = api/v1
+
+###
+GET {{baseUrl}}/{{urlPath}}/user/all/1
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/user/profile
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/user/profile/674286beb6f4d0f9f75a1c38
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/user/profile/posts/moni/674286cdb6f4d0f9f75a1c3f/870330389816
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/user/profile/user/suggestions
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/user/profile/search/nouser
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+
+
+
+###
+PUT {{baseUrl}}/{{urlPath}}/user/profile/change-password
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "currentPassword": "qwerty2",
+  "newPassword": "qwerty1",
+  "confirmPassword": "qwerty1"
+}
+
+###
+PUT {{baseUrl}}/{{urlPath}}/user/profile/basic-info
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "quote": "Tommorrow is a mystery. Today is a gift. That's why we call it The present",
+  "work":"",
+  "school": "Taltech",
+  "location": "Dusseldorf, Germany"
+}
+
+
+###
+PUT {{baseUrl}}/{{urlPath}}/user/profile/social-links
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "instagram":"",
+  "facebook":"",
+  "twitter":"https://www.facebook.com/gitlab",
+  "youtube":"https://www.youtube.com/watch?v=i1o9HMGaWxM"
+}
+
+
+###
+PUT {{baseUrl}}/{{urlPath}}/user/profile/settings
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "messages":false,
+  "reactions":true,
+  "comments":false,
+  "follows":true
+}
+
+
+
+
