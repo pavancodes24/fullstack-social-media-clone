@@ -33,6 +33,8 @@ export class PostCache extends BaseCache {
       commentsCount,
       imgVersion,
       imgId,
+      videoId,
+      videoVersion,
       reactions,
       createdAt
     } = createdPost;
@@ -59,7 +61,11 @@ export class PostCache extends BaseCache {
       'privacy',
       `${privacy}`,
       'gifUrl',
-      `${gifUrl}`
+      `${gifUrl}`,
+      'videoId',
+      `${videoId}`,
+      'videoVersion',
+      `${videoVersion}`
     ];
 
     const secondList: string[] = [
@@ -72,7 +78,11 @@ export class PostCache extends BaseCache {
       'imgId',
       `${imgId}`,
       'createdAt',
-      `${createdAt}`
+      `${createdAt}`,
+      'videoId',
+      `${videoId}`,
+      'videoVersion',
+      `${videoVersion}`
     ];
     const dataToSave: string[] = [...firstList, ...secondList];
 
@@ -164,6 +174,35 @@ export class PostCache extends BaseCache {
     }
   }
 
+  public async getPostsWithVideosFromCache(key: string, start: number, end: number): Promise<IPostDocument[]> {
+    try {
+      if (!this.client.isOpen) {
+        await this.client.connect();
+      }
+
+      const reply: string[] = await this.client.ZRANGE(key, start, end, { REV: true });
+      const multi: ReturnType<typeof this.client.multi> = this.client.multi();
+      for (const value of reply) {
+        multi.HGETALL(`posts:${value}`);
+      }
+      const replies: PostCacheMultiType = (await multi.exec()) as PostCacheMultiType;
+      const postWithVideos: IPostDocument[] = [];
+      for (const post of replies as IPostDocument[]) {
+        if (post.videoId && post.videoVersion) {
+          post.commentsCount = Helpers.parseJson(`${post.commentsCount}`) as number;
+          post.reactions = Helpers.parseJson(`${post.reactions}`) as IReactions;
+          post.createdAt = new Date(Helpers.parseJson(`${post.createdAt}`)) as Date;
+          postWithVideos.push(post);
+        }
+      }
+
+      return postWithVideos;
+    } catch (error) {
+      log.error(error);
+      throw new ServerError('Server error. Try again.');
+    }
+  }
+
   public async getUserPostsFromCache(key: string, uId: number): Promise<IPostDocument[]> {
     try {
       if (!this.client.isOpen) {
@@ -227,7 +266,7 @@ export class PostCache extends BaseCache {
   }
 
   public async updatePostInCache(key: string, updatedPost: IPostDocument): Promise<IPostDocument> {
-    const { post, bgColor, feelings, privacy, gifUrl, imgVersion, imgId, profilePicture } = updatedPost;
+    const { post, bgColor, feelings, privacy, gifUrl, imgVersion, imgId, profilePicture, videoId, videoVersion } = updatedPost;
 
     const firstList: string[] = [
       'post',
@@ -239,7 +278,11 @@ export class PostCache extends BaseCache {
       'privacy',
       `${privacy}`,
       'gifUrl',
-      `${gifUrl}`
+      `${gifUrl}`,
+      'videoId',
+      `${videoId}`,
+      'videoVersion',
+      `${videoVersion}`
     ];
     const secondList: string[] = ['profilePicture', `${profilePicture}`, 'imgVersion', `${imgVersion}`, 'imgId', `${imgId}`];
     const dataToSave: string[] = [...firstList, ...secondList];
