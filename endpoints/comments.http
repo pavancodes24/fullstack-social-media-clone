@@ -9,8 +9,8 @@ Accept: application/json
 withCredentials:true
 
 {
-  "userTo":"6737b089d16c37ad9ff9df0a",
-  "postId":"6739000c165b7b605d530b26",
+  "userTo":"674286cdb6f4d0f9f75a1c3f",
+  "postId":"674587d41f7e458595ccdfd9",
   "comment": "Hope you are good",
   "profilePicture":"https://res.cloudinary.com/dogpykohr/image/upload/v1726904784/66ee79ce63095810f63337e9"
 }
