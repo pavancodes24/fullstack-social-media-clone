@@ -68,7 +68,7 @@ export class UserCache extends BaseCache {
       }
       await this.client.ZADD('user', { score: parseInt(userUId, 10), value: `${key}` }); // to get all items instead of one item at one point of time we use ZADD.
       for (const [itemKey, itemValue] of Object.entries(dataToSave)) {
-        await this.client.HSET(`user:${key}`, `${itemKey}`, `${itemValue}`);
+        await this.client.HSET(`users:${key}`, `${itemKey}`, `${itemValue}`);
       }
     } catch (error) {
       log.error(error);
